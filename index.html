@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Ekonomi Fase F - Uang, Inflasi & Kebijakan Moneter: Konsep dan Teori Uang</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        naker: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow-sky': '0 0 20px rgba(56, 189, 248, 0.4)',
+                        'glass': '0 8px 32px 0 rgba(2, 132, 199, 0.12)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #ffffff 100%);
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(186, 230, 253, 0.8);
+        }
+
+        .mascot-float {
+            animation: float 3.2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(1.5deg); }
+        }
+
+        /* Custom Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e0f2fe; }
+        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
+
+        .tab-active {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.35);
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen selection:bg-naker-500 selection:text-white">
+
+    <!-- HEADER NAVBAR -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-naker-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+            
+            <!-- Brand Logo & Title -->
+            <div class="flex items-center gap-3.5">
+                <div class="relative">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-naker-600 via-naker-500 to-sky-400 rounded-2xl flex items-center justify-center text-white shadow-glow-sky transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-sky-500"></span>
+                    </span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">MPI Ekonomi Deep Learning</h1>
+                        <span class="bg-naker-100 text-naker-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase border border-naker-200">Kelas 11 / Fase F</span>
+                    </div>
+                    <p class="text-xs text-naker-600 font-semibold flex items-center gap-1">
+                        <span>💰 Topik: Konsep dan Teori Uang (Uang, Inflasi & Kebijakan Moneter)</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Author Badge -->
+            <div class="flex items-center gap-3 bg-white border border-naker-200 px-3.5 py-1.5 rounded-xl shadow-sm">
+                <div class="w-8 h-8 rounded-lg bg-naker-100 text-naker-700 flex items-center justify-center font-bold text-xs">
+                    SPY
+                </div>
+                <div class="text-right text-xs">
+                    <span class="block font-bold text-slate-800">Sangaji Panji Yuda, SE.</span>
+                    <span class="text-[11px] text-naker-600 font-medium">SMAN 1 Parongpong</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+        <!-- TAB NAVIGATION -->
+        <nav class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-naker-100/70 p-1.5 rounded-2xl border border-naker-200/80 shadow-inner">
+            <button onclick="switchTab('tahap1')" id="tab-tahap1" class="tab-btn tab-active py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>🚀 1. Orientasi & Eksplorasi</span>
+            </button>
+            <button onclick="switchTab('tahap2')" id="tab-tahap2" class="tab-btn text-slate-600 hover:bg-white/70 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>💡 2. Pendalaman Materi</span>
+            </button>
+            <button onclick="switchTab('tahap3')" id="tab-tahap3" class="tab-btn text-slate-600 hover:bg-white/70 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>🎯 3. Kuis Evaluasi HOTS</span>
+            </button>
+            <button onclick="switchTab('tahap4')" id="tab-tahap4" class="tab-btn text-slate-600 hover:bg-white/70 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
+                <span>📊 4. Dashboard & Refleksi</span>
+            </button>
+        </nav>
+
+        <!-- INTERACTIVE SVG MASCOT (EconBot Mentor) -->
+        <div id="mascot-container" class="glass-panel p-4 rounded-2xl flex items-center gap-4 sm:gap-6 border-l-4 border-l-naker-500 shadow-glass transition-all duration-300">
+            <div class="relative flex-shrink-0">
+                <div id="mascot-svg-wrapper" class="w-16 h-16 sm:w-20 sm:h-20 mascot-float cursor-pointer hover:scale-105 transition-transform" onclick="triggerMascotTrick()">
+                    <!-- SVG Mascot: EconBot -->
+                    <svg id="mascot-svg" viewBox="0 0 120 120" class="w-full h-full drop-shadow-md">
+                        <defs>
+                            <linearGradient id="econBotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#38bdf8" />
+                                <stop offset="100%" stop-color="#0284c7" />
+                            </linearGradient>
+                            <linearGradient id="faceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0f172a" />
+                                <stop offset="100%" stop-color="#1e293b" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Top Hat / Currency Symbol Decoration -->
+                        <rect x="45" y="12" width="30" height="10" rx="3" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+                        <rect x="36" y="20" width="48" height="6" rx="2" fill="#0369a1"/>
+                        <!-- Head Shell -->
+                        <rect x="24" y="26" width="72" height="72" rx="18" fill="url(#econBotGrad)" stroke="#ffffff" stroke-width="3"/>
+                        <!-- Ears -->
+                        <rect x="18" y="48" width="8" height="18" rx="4" fill="#0284c7"/>
+                        <rect x="94" y="48" width="8" height="18" rx="4" fill="#0284c7"/>
+                        <!-- Face Screen -->
+                        <rect x="32" y="34" width="56" height="40" rx="12" fill="url(#faceGrad)"/>
+                        <!-- Eyes -->
+                        <circle id="eye-left" cx="48" cy="50" r="5" fill="#38bdf8"/>
+                        <circle id="eye-right" cx="72" cy="50" r="5" fill="#38bdf8"/>
+                        <circle cx="49" cy="48" r="1.8" fill="#ffffff"/>
+                        <circle cx="73" cy="48" r="1.8" fill="#ffffff"/>
+                        <!-- Mouth (Arc) -->
+                        <path id="mascot-mouth" d="M 48 62 Q 60 69 72 62" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Status LED Light -->
+                        <circle id="mascot-light" cx="60" cy="104" r="4" fill="#10b981" class="animate-pulse"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="flex-grow">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="font-bold text-sm text-slate-900 flex items-center gap-1">
+                        <span>EconBot Mentor</span>
+                    </span>
+                    <span class="text-[10px] bg-naker-100 text-naker-800 font-bold px-2 py-0.5 rounded-md border border-naker-200">Asisten Pembelajaran Uang</span>
+                </div>
+                <p id="mascot-dialog" class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                    "Halo calon ekonom muda! Mari bedah secara mendalam evolusi uang, fungsi fundamentalnya, jenis-jenis uang modern, hingga Teori Kuantitas Uang Irving Fisher!"
+                </p>
+            </div>
+        </div>
+
+        <!-- TAHAP 1: PENGANTAR & EKSPLORASI AWAL -->
+        <section id="content-tahap1" class="tab-content flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-glass border border-naker-200">
+                
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-gradient-to-r from-naker-600 to-sky-500 text-white font-black px-3.5 py-1.5 rounded-xl text-xs tracking-wider uppercase shadow-md">
+                        Tahap 1
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Orientasi Konteks & Eksplorasi Awal: Mengapa Uang Diciptakan?</h2>
+                </div>
+
+                <!-- Context Narrative -->
+                <div class="bg-gradient-to-br from-white via-naker-50/60 to-sky-50/40 p-6 rounded-2xl border border-naker-200/80 mb-6 shadow-sm">
+                    <div class="flex items-center gap-2 mb-3 text-naker-700 font-bold text-base">
+                        <svg class="w-5 h-5 text-naker-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Dari Sistem Barter Menuju Standar Alat Tukar Universal</span>
+                    </div>
+                    
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify mb-3">
+                        Sebelum uang ditemukan, manusia memenuhi kebutuhan hidupnya melalui sistem <strong>barter</strong> (tukar-menukar barang secara langsung). Namun, barter memiliki kelemahan fatal, salah satunya adalah kesulitan menemukan kesamaan kehendak ganda (<em>coincidence of wants</em>)—misalnya petani padi yang butuh sepatu harus mencari pembuat sepatu yang sedang butuh beras dalam waktu dan nilai yang sama persis.
+                    </p>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed text-justify mb-4">
+                        Kehadiran uang merevolusi peradaban ekonomi, mempermudah transaksi, mengukur nilai barang secara objektif, serta menjadi penyimpan kekayaan yang andal hingga era digital saat ini.
+                    </p>
+
+                    <div class="bg-naker-100/80 p-3.5 rounded-xl border border-naker-300 text-xs text-naker-900 font-medium flex items-start gap-2.5">
+                        <span class="text-base">💭</span>
+                        <div>
+                            <strong>Refleksi Deep Learning:</strong> Apa yang akan terjadi pada aktivitas perekonomian modern di pasar swalayan jika tiba-tiba seluruh bentuk uang (kartal, giral, maupun digital) ditiadakan dan kita kembali wajib menggunakan sistem barter?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPLORATION INTERACTION 1 -->
+                <div class="bg-white p-5 sm:p-6 rounded-2xl border border-naker-300 shadow-sm">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+                            <span class="w-3 h-3 bg-naker-500 rounded-full animate-ping"></span>
+                            <span>Interaksi Eksplorasi Awal: Mengatasi Kendala Barter</span>
+                        </h3>
+                        <span class="text-[11px] bg-naker-100 text-naker-700 font-bold px-2 py-0.5 rounded-full">Kritis & Analitis</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+                        <strong>a. Instruksi:</strong> Bayangkan Anda seorang peternak sapi yang ingin membeli laptop gaming seharga Rp15 juta, tetapi toko komputer tersebut hanya mau menerima pembayaran dengan sekarung biji kopi kualitas ekspor. Kendala klasik sistem barter apakah yang sedang Anda alami?
+                    </p>
+
+                    <!-- b. Response options -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                        <button onclick="checkEksplorasi(1)" class="exp-btn text-left p-4 rounded-xl border-2 border-naker-200 hover:border-naker-500 bg-naker-50/40 hover:bg-naker-50 transition-all text-xs sm:text-sm">
+                            <span class="font-bold text-naker-800 block mb-1">Opsi A: Ketidaksamaan Kehendak Ganda (Coincidence of Wants) & Kesulitan Penghitungan Nilai</span>
+                            Sebab sulit menyamakan nilai tukar langsung antara sapi, biji kopi, dan laptop tanpa adanya satuan hitung standar.
+                        </button>
+                        <button onclick="checkEksplorasi(2)" class="exp-btn text-left p-4 rounded-xl border-2 border-naker-200 hover:border-naker-500 bg-naker-50/40 hover:bg-naker-50 transition-all text-xs sm:text-sm">
+                            <span class="font-bold text-naker-800 block mb-1">Opsi B: Inflasi Moneter Akibat Kelebihan Jumlah Beredar</span>
+                            Sebab harga laptop mengalami kenaikan akibat terlalu banyaknya pasokan uang kartal di bank sentral.
+                        </button>
+                    </div>
+
+                    <!-- c & d. Immediate Feedback & Conceptual Explanation -->
+                    <div id="feedback-eksplorasi" class="hidden p-4 rounded-xl text-xs sm:text-sm leading-relaxed transition-all"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAHAP 2: PENDALAMAN MATERI BERTAHAP -->
+        <section id="content-tahap2" class="tab-content hidden flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-glass border border-naker-200">
+                
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-gradient-to-r from-naker-600 to-sky-500 text-white font-black px-3.5 py-1.5 rounded-xl text-xs tracking-wider uppercase shadow-md">
+                        Tahap 2
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Pendalaman Materi: Konsep, Fungsi, Jenis & Teori Uang</h2>
+                </div>
+
+                <!-- SUB MATERI 1: DEFINISI & FUNGSI UANG -->
+                <div class="bg-white border border-naker-200 p-5 sm:p-6 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-base sm:text-lg text-naker-900 mb-3 border-b border-naker-100 pb-2.5 flex items-center gap-2">
+                        <span class="bg-naker-100 text-naker-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black">1</span>
+                        Definisi & Fungsi Uang (Asli & Turunan)
+                    </h3>
+                    
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 text-justify">
+                        Secara ilmu ekonomi, <strong>uang</strong> adalah segala sesuatu yang diterima secara umum oleh masyarakat sebagai alat pembayaran yang sah untuk pertukaran barang/jasa serta pelunasan utang. Fungsi uang dibagi menjadi dua kelompok utama:
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 text-xs">
+                        <div class="bg-naker-50/80 p-3.5 rounded-xl border border-naker-200">
+                            <div class="font-bold text-naker-800 mb-1">🪙 Fungsi Asli (Primer)</div>
+                            <p class="text-slate-600"><strong>1. Alat Tukar (Medium of Exchange):</strong> Melancarkan transaksi pertukaran.<br><strong>2. Satuan Hitung (Unit of Account):</strong> Menentukan nilai/harga suatu barang.</p>
+                        </div>
+                        <div class="bg-naker-50/80 p-3.5 rounded-xl border border-naker-200">
+                            <div class="font-bold text-naker-800 mb-1">📈 Fungsi Turunan (Sekunder)</div>
+                            <p class="text-slate-600">Penyimpan kekayaan (store of value), alat pembayaran sah di masa depan (deferred payments), pembentuk kekayaan, dan pendorong investasi.</p>
+                        </div>
+                    </div>
+
+                    <!-- INTERAKSI WAJIB 1: KLASIFIKASI FUNGSI UANG -->
+                    <div class="bg-gradient-to-r from-naker-50 to-sky-50 border border-naker-300 p-4 sm:p-5 rounded-xl">
+                        <div class="mb-3">
+                            <span class="text-[10px] font-black bg-naker-600 text-white px-2.5 py-1 rounded-md uppercase">Interaksi Wajib 1</span>
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">Klasifikasi Fungsi Uang Berdasarkan Kasus Nyata</h4>
+                        </div>
+                        
+                        <!-- a. Instruksi -->
+                        <p class="text-xs text-slate-600 mb-3"><strong>a. Instruksi:</strong> Jodohkan skenario transaksi di bawah ini dengan kategori fungsi uang yang paling tepat!</p>
+
+                        <!-- b. Pilihan Respon -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3 text-xs">
+                            <div class="bg-white p-3 rounded-xl border border-naker-200">
+                                <label class="font-semibold text-slate-800 block mb-1">1. Ibu Siska melihat label harga baju di butik tertera Rp250.000.</label>
+                                <select id="int1-select1" class="w-full mt-1 border border-naker-300 rounded-lg p-2 text-xs bg-naker-50/50 focus:outline-none focus:ring-2 focus:ring-naker-500">
+                                    <option value="">-- Pilih Fungsi --</option>
+                                    <option value="satuan_hitung">Satuan Hitung (Unit of Account)</option>
+                                    <option value="alat_tukar">Alat Tukar (Medium of Exchange)</option>
+                                    <option value="penyimpan">Penyimpan Kekayaan</option>
+                                </select>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-naker-200">
+                                <label class="font-semibold text-slate-800 block mb-1">2. Pak Budi membeli beras di pasar dengan menyerahkan uang tunai.</label>
+                                <select id="int1-select2" class="w-full mt-1 border border-naker-300 rounded-lg p-2 text-xs bg-naker-50/50 focus:outline-none focus:ring-2 focus:ring-naker-500">
+                                    <option value="">-- Pilih Fungsi --</option>
+                                    <option value="satuan_hitung">Satuan Hitung</option>
+                                    <option value="alat_tukar">Alat Tukar (Medium of Exchange)</option>
+                                    <option value="pembayaran_utang">Alat Pembayaran Utang</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button onclick="verifyInteraksi1()" class="bg-naker-600 hover:bg-naker-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md">
+                            Periksa Jawaban Interaksi 1
+                        </button>
+                        
+                        <!-- c & d. Feedback & Conceptual Explanation -->
+                        <div id="int1-feedback" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- SUB MATERI 2: JENIS & SYARAT UANG -->
+                <div class="bg-white border border-naker-200 p-5 sm:p-6 rounded-2xl mb-6 shadow-sm">
+                    <h3 class="font-bold text-base sm:text-lg text-naker-900 mb-3 border-b border-naker-100 pb-2.5 flex items-center gap-2">
+                        <span class="bg-naker-100 text-naker-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black">2</span>
+                        Syarat, Jenis (Kartal & Giral), serta Likuiditas Uang
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 text-justify">
+                        Uang yang ideal harus memenuhi syarat seperti: diterima secara umum (<em>acceptability</em>), mudah dibawa (<em>portability</em>), tahan lama (<em>durability</em>), mudah dibagi tanpa mengurangi nilai (<em>divisibility</em>), dan nilainya relatif stabil (<em>stability of value</em>). Berdasarkan lembaga pembuatnya, uang dibagi menjadi <strong>Uang Kartal</strong> (uang kertas & logam yang diterbitkan Bank Sentral) dan <strong>Uang Giral</strong> (rekening giro/saldo bank umum seperti cek, bilyet giro, transfer).
+                    </p>
+
+                    <!-- INTERAKSI WAJIB 2: MENGURUTKAN TINGKAT LIKUIDITAS -->
+                    <div class="bg-gradient-to-r from-naker-50 to-sky-50 border border-naker-300 p-4 sm:p-5 rounded-xl">
+                        <div class="mb-3">
+                            <span class="text-[10px] font-black bg-naker-600 text-white px-2.5 py-1 rounded-md uppercase">Interaksi Wajib 2</span>
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">Mengurutkan Instrumen Keuangan Berdasarkan Tingkat Likuiditas (Dari Paling Likuid ke Kurang Likuid)</h4>
+                        </div>
+                        
+                        <!-- a. Instruksi -->
+                        <p class="text-xs text-slate-600 mb-3"><strong>a. Instruksi:</strong> Susunlah instrumen keuangan berikut dari urutan paling tinggi likuiditasnya (1) hingga instrumen penyimpan jangka panjang (4).</p>
+
+                        <!-- b. Respon murid (Interactive Ordering) -->
+                        <div id="policy-container" class="space-y-2 mb-3 text-xs">
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="2">
+                                <span>💳 Saldo Tabungan Bank / ATM / Uang Giral</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="1">
+                                <span>💵 Uang Kertas & Logam Tunai (Cash) di Dompet</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="4">
+                                <span>🏠 Properti / Tanah / Aset Tetap Jangka Panjang</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                            <div class="policy-item bg-white p-2.5 rounded-xl border border-naker-300 flex items-center justify-between" data-id="3">
+                                <span>📜 Deposito Berjangka (Time Deposit)</span>
+                                <div class="flex gap-1">
+                                    <button onclick="movePolicyItem(this, -1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▲</button>
+                                    <button onclick="movePolicyItem(this, 1)" class="px-2 py-1 bg-naker-100 hover:bg-naker-200 rounded-lg text-naker-800 font-bold">▼</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="verifyInteraksi2()" class="bg-naker-600 hover:bg-naker-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md">
+                            Validasi Urutan Likuiditas
+                        </button>
+                        
+                        <!-- c & d. Feedback & Conceptual Explanation -->
+                        <div id="int2-feedback" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- SUB MATERI 3: TEORI KUANTITAS UANG (IRVING FISHER) -->
+                <div class="bg-white border border-naker-200 p-5 sm:p-6 rounded-2xl shadow-sm">
+                    <h3 class="font-bold text-base sm:text-lg text-naker-900 mb-3 border-b border-naker-100 pb-2.5 flex items-center gap-2">
+                        <span class="bg-naker-100 text-naker-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black">3</span>
+                        Teori Kuantitas Uang (Persamaan Pertukaran Irving Fisher)
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4 text-justify">
+                        Ekonom Irving Fisher merumuskan teori kuantitas uang yang menyatakan bahwa perubahan jumlah uang beredar (M) akan berdampak langsung terhadap tingkat harga umum (P). Rumus persamaannya adalah: <strong class="text-naker-700">M × V = P × T</strong> (di mana M = Jumlah Uang Beredar, V = Kecepatan Peredaran Uang, P = Tingkat Harga Umum, T = Volume Transaksi Barang/Jasa).
+                    </p>
+
+                    <!-- INTERAKSI WAJIB 3: ANALISIS KASUS TEORI FISHER -->
+                    <div class="bg-gradient-to-r from-naker-50 to-sky-50 border border-naker-300 p-4 sm:p-5 rounded-xl">
+                        <div class="mb-3">
+                            <span class="text-[10px] font-black bg-naker-600 text-white px-2.5 py-1 rounded-md uppercase">Interaksi Wajib 3</span>
+                            <h4 class="text-xs sm:text-sm font-bold text-slate-900 mt-1">Studi Kasus Teori Fisher: Dampak Pelipatgandaan Uang Beredar</h4>
+                        </div>
+                        
+                        <!-- a. Instruksi -->
+                        <p class="text-xs text-slate-600 mb-3">
+                            <strong>a. Instruksi:</strong> Berdasarkan persamaan Irving Fisher ($M \times V = P \times T$), jika kecepatan peredaran uang ($V$) dan volume transaksi ($T$) diasumsikan tetap, apa yang akan terjadi secara makroekonomi jika bank sentral melipatgandakan jumlah uang beredar ($M$) secara berlebihan?
+                        </p>
+
+                        <!-- b. Pilihan Respon -->
+                        <div class="space-y-2 mb-3 text-xs">
+                            <button onclick="verifyInteraksi3('A')" class="w-full text-left p-3 rounded-xl bg-white border border-naker-200 hover:border-naker-500 font-medium transition-all">
+                                A. Tingkat harga umum ($P$) akan mengalami kenaikan tajam (inflasi) secara proporsional.
+                            </button>
+                            <button onclick="verifyInteraksi3('B')" class="w-full text-left p-3 rounded-xl bg-white border border-naker-200 hover:border-naker-500 font-medium transition-all">
+                                B. Nilai tukar mata uang domestik akan menguat secara drastis terhadap seluruh valuta asing tanpa efek samping.
+                            </button>
+                        </div>
+
+                        <!-- c & d. Feedback & Conceptual Explanation -->
+                        <div id="int3-feedback" class="hidden p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAHAP 3: EVALUASI KONSEP (KUIS HOTS 10 SOAL BERVARIASI) -->
+        <section id="content-tahap3" class="tab-content hidden flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-glass border border-naker-200">
+                
+                <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-gradient-to-r from-naker-600 to-sky-500 text-white font-black px-3.5 py-1.5 rounded-xl text-xs tracking-wider uppercase shadow-md">
+                            Tahap 3
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Kuis Evaluasi HOTS Konsep & Teori Uang (10 Soal)</h2>
+                    </div>
+                    <div class="bg-naker-100 border border-naker-300 text-naker-900 px-4 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5">
+                        <span>🏆 Skor Sementara:</span>
+                        <span id="current-score-display" class="text-sm font-black text-naker-600">0</span>
+                        <span>/ 100</span>
+                    </div>
+                </div>
+
+                <!-- PROGRESS BAR -->
+                <div class="w-full bg-naker-100 rounded-full h-3 mb-6 overflow-hidden border border-naker-200 p-0.5">
+                    <div id="quiz-progress-bar" class="bg-gradient-to-r from-naker-500 via-sky-400 to-naker-600 h-full rounded-full transition-all duration-300" style="width: 10%"></div>
+                </div>
+
+                <!-- QUESTION CARD CONTAINER -->
+                <div id="quiz-container" class="bg-white border border-naker-200 p-5 sm:p-7 rounded-2xl shadow-sm">
+                    <!-- Dynamic Question Content Loaded via JS -->
+                </div>
+
+                <!-- QUIZ NAVIGATION BUTTONS -->
+                <div class="flex justify-between items-center mt-6">
+                    <button id="btn-prev-q" onclick="navigateQuiz(-1)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition-all disabled:opacity-40">
+                        ← Soal Sebelumnya
+                    </button>
+                    <span id="quiz-question-number" class="text-xs font-black text-naker-700 bg-naker-50 px-3 py-1 rounded-lg border border-naker-200">
+                        Soal 1 dari 10
+                    </span>
+                    <button id="btn-next-q" onclick="navigateQuiz(1)" class="bg-gradient-to-r from-naker-600 to-sky-500 hover:from-naker-700 hover:to-sky-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all shadow-md">
+                        Soal Berikutnya →
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAHAP 4: DASHBOARD EVALUASI & REFLEKSI -->
+        <section id="content-tahap4" class="tab-content hidden flex flex-col gap-6">
+            <div class="glass-panel p-6 sm:p-10 rounded-3xl shadow-glass border border-naker-200 text-center">
+                <div class="max-w-xl mx-auto">
+                    
+                    <div class="inline-flex p-4 bg-naker-100 rounded-3xl mb-4 text-naker-600 shadow-inner">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-1">
+                        Dashboard Capaian Pembelajaran
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mb-6">
+                        Laporan Evaluasi Deep Learning TP: Konsep dan Teori Uang
+                    </p>
+
+                    <!-- SCORE DISPLAY CIRCLE -->
+                    <div class="relative w-40 h-40 mx-auto mb-6 flex items-center justify-center bg-gradient-to-tr from-naker-600 via-naker-500 to-sky-400 rounded-full text-white shadow-glow-sky border-4 border-white">
+                        <div>
+                            <span id="final-score" class="text-5xl font-black tracking-tight">0</span>
+                            <span class="text-xs block font-bold opacity-80 uppercase tracking-widest mt-1">Skor Akhir</span>
+                        </div>
+                    </div>
+
+                    <!-- BREAKDOWN CARDS -->
+                    <div class="grid grid-cols-2 gap-3 mb-6 text-left">
+                        <div class="bg-emerald-50/90 p-4 rounded-2xl border border-emerald-200 shadow-sm">
+                            <span class="text-xs text-emerald-700 font-bold block mb-1">Jawaban Benar</span>
+                            <span id="correct-count" class="text-xl font-black text-emerald-800">0 Soal</span>
+                        </div>
+                        <div class="bg-rose-50/90 p-4 rounded-2xl border border-rose-200 shadow-sm">
+                            <span class="text-xs text-rose-700 font-bold block mb-1">Salah / Belum Dijawab</span>
+                            <span id="wrong-count" class="text-xl font-black text-rose-800">0 Soal</span>
+                        </div>
+                    </div>
+
+                    <!-- ANALYTICS PER QUESTION TYPE -->
+                    <div class="bg-white p-5 rounded-2xl border border-naker-200 text-left text-xs mb-6 space-y-2.5 shadow-sm">
+                        <h4 class="font-bold text-slate-900 text-sm border-b border-naker-100 pb-2">
+                            Analisis Capaian Berdasarkan Variasi Soal:
+                        </h4>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Pilihan Ganda (PG):</span><span id="type-pg" class="font-bold text-naker-700">0 / 4</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Pilihan Ganda Kompleks (PGK):</span><span id="type-pgk" class="font-bold text-naker-700">0 / 2</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Benar / Salah (BS):</span><span id="type-bs" class="font-bold text-naker-700">0 / 3</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-600">Urutkan / Matching:</span><span id="type-drag" class="font-bold text-naker-700">0 / 1</span></div>
+                    </div>
+
+                    <!-- REFLECTIVE MESSAGE BOX -->
+                    <div id="reflective-box" class="p-5 rounded-2xl text-xs sm:text-sm text-left leading-relaxed mb-6 border">
+                        <!-- Loaded dynamically via JavaScript -->
+                    </div>
+
+                    <button onclick="restartQuiz()" class="w-full bg-gradient-to-r from-naker-600 to-sky-500 hover:from-naker-700 hover:to-sky-600 text-white font-extrabold py-3.5 rounded-2xl text-sm transition-all shadow-lg hover:shadow-xl">
+                        🔄 Ulangi Evaluasi / Belajar Lagi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFETTI CANVAS OVERLAY -->
+        <canvas id="confetti-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50"></canvas>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white/80 border-t border-naker-200 mt-auto py-4 text-center text-xs text-slate-500">
+        <p>© 2026 Media Pembelajaran Digital Ekonomi • Sangaji Panji Yuda, SE. (SMAN 1 Parongpong)</p>
+    </footer>
+
+    <script>
+        // WEB AUDIO API SYNTHESIZER (Pure JS audio generation without external sound assets)
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+        }
+
+        function playSound(type) {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'correct') {
+                    // Chime arpeggio
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+                    osc.start(now);
+                    osc.stop(now + 0.45);
+                } else if (type === 'wrong') {
+                    // Low error synth
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now); // A3
+                    osc.frequency.setValueAtTime(174.61, now + 0.12); // F3
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                } else if (type === 'finish') {
+                    // Fanfare
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.12);
+                    osc.frequency.setValueAtTime(783.99, now + 0.24);
+                    osc.frequency.setValueAtTime(1046.50, now + 0.36);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+                    osc.start(now);
+                    osc.stop(now + 0.7);
+                }
+            } catch (e) {
+                console.log("Audio context muted or user interaction required.");
+            }
+        }
+
+        // MASCOT ANIMATION STATE MANAGEMENT
+        function setMascotState(state, message) {
+            const mouth = document.getElementById('mascot-mouth');
+            const light = document.getElementById('mascot-light');
+            const dialog = document.getElementById('mascot-dialog');
+
+            if (message) dialog.innerText = message;
+
+            if (state === 'happy') {
+                mouth.setAttribute('d', 'M 44 58 Q 60 72 76 58');
+                light.setAttribute('fill', '#10b981'); // Emerald Green
+                playSound('correct');
+            } else if (state === 'sad') {
+                mouth.setAttribute('d', 'M 46 68 Q 60 56 74 68');
+                light.setAttribute('fill', '#ef4444'); // Red
+                playSound('wrong');
+            } else if (state === 'thinking') {
+                mouth.setAttribute('d', 'M 46 62 L 74 62');
+                light.setAttribute('fill', '#f59e0b'); // Amber
+            } else {
+                mouth.setAttribute('d', 'M 48 62 Q 60 69 72 62');
+                light.setAttribute('fill', '#38bdf8');
+            }
+        }
+
+        function triggerMascotTrick() {
+            setMascotState('happy', '💡 "Tahukah kamu? Uang fiat modern tidak di-back oleh emas secara fisik, melainkan dipercaya karena otoritas hukum bank sentral!"');
+        }
+
+        // TAB NAVIGATION
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-slate-600');
+            });
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('tab-active');
+            activeBtn.classList.remove('text-slate-600');
+
+            if (tabId === 'tahap4') {
+                calculateFinalDashboard();
+            }
+        }
+
+        // TAHAP 1 INTERACTION
+        function checkEksplorasi(option) {
+            const fb = document.getElementById('feedback-eksplorasi');
+            fb.classList.remove('hidden', 'bg-rose-50', 'bg-emerald-50', 'text-rose-900', 'text-emerald-900', 'border-rose-300', 'border-emerald-300');
+
+            if (option === 1) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>✅ Tepat Sekali! (Analisis Kritis Sempurna)</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> Kendala utama barter adalah kesulitan menemukan kesamaan kehendak ganda (*coincidence of wants*) serta ketiadaan satuan hitung baku untuk mengukur nilai komoditas yang berbeda jenis.
+                `;
+                setMascotState('happy', 'Analisis awal kamu sangat tajam! Mari pelajari fungsi dan jenis uang lebih dalam.');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>❌ Kurang Tepat.</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> Kasus tersebut menggambarkan hambatan transaksi langsung (barter), bukan masalah inflasi jumlah uang beredar.
+                `;
+                setMascotState('sad', 'Ingat kembali bahwa hambatan utama sebelum ada uang adalah kesulitan menemukan kebutuhan yang saling cocok.');
+            }
+        }
+
+        // TAHAP 2 - MANDATORY INTERACTION 1
+        function verifyInteraksi1() {
+            const v1 = document.getElementById('int1-select1').value;
+            const v2 = document.getElementById('int1-select2').value;
+            const fb = document.getElementById('int1-feedback');
+
+            fb.classList.remove('hidden', 'bg-emerald-50', 'bg-rose-50', 'text-emerald-900', 'text-rose-900');
+
+            if (v1 === 'satuan_hitung' && v2 === 'alat_tukar') {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>🎉 Benar! (Penjodohan Sempurna)</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> Label harga menunjukkan fungsi uang sebagai 'Satuan Hitung' (mengukur nilai), sedangkan penyerahan uang tunai untuk membeli beras adalah fungsi uang sebagai 'Alat Tukar'.
+                `;
+                setMascotState('happy', 'Sempurna! Kamu memahami fungsi asli uang dengan sangat baik.');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>⚠️ Belum Tepat.</strong><br>
+                    <strong>Penjelasan:</strong> Pastikan memilih 'Satuan Hitung' untuk label harga barang dan 'Alat Tukar' untuk transaksi penyerahan uang saat belanja.
+                `;
+                setMascotState('sad', 'Ayo cermati kembali perbedaan antara fungsi satuan hitung dan alat tukar.');
+            }
+        }
+
+        // TAHAP 2 - MANDATORY INTERACTION 2 (Ordering)
+        function movePolicyItem(btn, direction) {
+            const item = btn.closest('.policy-item');
+            const container = document.getElementById('policy-container');
+            if (direction === -1 && item.previousElementSibling) {
+                container.insertBefore(item, item.previousElementSibling);
+            } else if (direction === 1 && item.nextElementSibling) {
+                container.insertBefore(item.nextElementSibling, item);
+            }
+        }
+
+        function verifyInteraksi2() {
+            const items = document.querySelectorAll('.policy-item');
+            const currentOrder = Array.from(items).map(el => parseInt(el.getAttribute('data-id')));
+            const correctOrder = [1, 2, 3, 4];
+            const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
+
+            const fb = document.getElementById('int2-feedback');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'bg-rose-50', 'text-emerald-900', 'text-rose-900');
+
+            if (isCorrect) {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>🚀 Sempurna! Urutan Likuiditas Tepat:</strong><br>
+                    1. Uang Tunai (Cash) → 2. Saldo Tabungan Bank (Giral) → 3. Deposito Berjangka → 4. Properti / Tanah (Aset Tetap).
+                `;
+                setMascotState('happy', 'Luar biasa! Urutan tingkat likuiditas instrumen keuanganmu sangat tepat.');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>❌ Urutan Belum Tepat.</strong><br>
+                    <strong>Petunjuk:</strong> Mulailah dari uang tunai yang paling siap pakai tanpa konversi, lalu saldo bank, deposito, hingga aset tetap tanah yang paling lambat dicairkan.
+                `;
+                setMascotState('thinking', 'Urutkan dari yang paling cepat dan mudah digunakan untuk transaksi hingga yang paling sulit dicairkan.');
+            }
+        }
+
+        // TAHAP 2 - MANDATORY INTERACTION 3 (Case Study)
+        function verifyInteraksi3(choice) {
+            const fb = document.getElementById('int3-feedback');
+            fb.classList.remove('hidden', 'bg-emerald-50', 'bg-rose-50', 'text-emerald-900', 'text-rose-900');
+
+            if (choice === 'A') {
+                fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-300');
+                fb.innerHTML = `
+                    <strong>✅ Analisis Teori Fisher Tepat!</strong><br>
+                    <strong>Penjelasan Konseptual:</strong> Menurut persamaan Irving Fisher ($M \\times V = P \\times T$), peningkatan jumlah uang beredar ($M$) yang tidak diimbangi pertumbuhan transaksi ($T$) akan langsung mendorong kenaikan tingkat harga umum ($P$), alias memicu inflasi.
+                `;
+                setMascotState('happy', 'Analisis Teori Kuantitas Uang Irving Fisher kamu sangat matang!');
+            } else {
+                fb.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-300');
+                fb.innerHTML = `
+                    <strong>❌ Analisis Kurang Tepat.</strong><br>
+                    <strong>Penjelasan:</strong> Pencetakan uang berlebihan tanpa diimbangi output riil justru menurunkan nilai daya beli uang dan memicu inflasi tinggi, bukan penguatan nilai tukar.
+                `;
+                setMascotState('sad', 'Perhatikan bahwa pelipatgandaan uang beredar memicu lonjakan harga barang (inflasi).');
+            }
+        }
+
+        // 10 HOTS QUIZ DATA
+        const quizData = [
+            {
+                id: 1,
+                type: 'pg',
+                question: "Seseorang menerima pembayaran gaji bulanan dan langsung mengalokasikannya untuk membeli kebutuhan pokok hari ini, sementara sebagian sisanya ditabung di bank. Fungsi uang manakah yang tercermin dari tindakan menabung tersebut?",
+                options: [
+                    "Penyimpan Kekayaan (Store of Value) dan Pembayaran Masa Depan.",
+                    "Alat Tukar Langsung (Medium of Exchange) semata.",
+                    "Satuan Hitung (Unit of Account) absolut.",
+                    "Komoditas barter standar internasional."
+                ],
+                correct: 0,
+                explanation: "Menyimpan uang untuk keperluan masa depan mencerminkan fungsi turunan uang sebagai penyimpan kekayaan (store of value) dan alat pembayaran yang sah di masa depan."
+            },
+            {
+                id: 2,
+                type: 'bs',
+                question: "Pernyataan HOTS: 'Cek dan bilyet giro yang diterbitkan oleh bank umum untuk nasabah dikategorikan sebagai Uang Kartal karena memiliki bentuk fisik kertas.'",
+                options: ["BENAR", "SALAH"],
+                correct: 1, // SALAH
+                explanation: "SALAH. Cek dan bilyet giro merupakan bentuk Uang Giral (rekening simpanan di bank umum), sedangkan uang kartal adalah uang kertas dan logam yang diterbitkan secara resmi oleh Bank Sentral."
+            },
+            {
+                id: 3,
+                type: 'pgk',
+                question: "Manakah di antara syarat-syarat berikut yang membuat suatu benda layak diterima masyarakat sebagai uang modern yang ideal? (Pilih semua yang tepat)",
+                options: [
+                    "Diterima secara umum oleh seluruh lapisan masyarakat (Acceptability).",
+                    "Memiliki nilai intrinsik yang jauh lebih tinggi daripada nilai nominalnya.",
+                    "Mudah dibawa ke mana-mana dan praktis (Portability).",
+                    "Tahan lama dan tidak mudah rusak (Durability)."
+                ],
+                correct: [0, 2, 3],
+                explanation: "Uang modern (seperti uang kertas fiat) tidak harus memiliki nilai intrinsik tinggi, namun wajib memenuhi syarat acceptability, portability, durability, divisibility, dan stability of value."
+            },
+            {
+                id: 4,
+                type: 'drag',
+                question: "Urutkan komponen Teori Kuantitas Uang Irving Fisher (M x V = P x T) berikut secara logis!",
+                items: [
+                    "1. M = Jumlah Uang Beredar di masyarakat",
+                    "2. V = Kecepatan peredaran uang dari satu tangan ke tangan lain",
+                    "3. P = Tingkat harga umum barang dan jasa",
+                    "4. T = Volume total transaksi perdagangan riil"
+                ],
+                correctOrder: [0, 1, 2, 3],
+                explanation: "Persamaan Fisher menghubungkan jumlah uang beredar (M) dan kecepatannya (V) dengan tingkat harga (P) serta volume transaksi (T)."
+            },
+            {
+                id: 5,
+                type: 'pg',
+                question: "Di sebuah pulau terpencil, masyarakat menggunakan kerang laut langka sebagai alat tukar transaksi. Namun seiring waktu, penemuan lokasi kerang melimpah membuat harga barang melonjak drastis. Syarat uang apakah yang gagal dipenuhi oleh kerang tersebut?",
+                options: [
+                    "Nilainya relatif stabil (Stability of Value).",
+                    "Mudah dibawa (Portability).",
+                    "Tahan lama (Durability).",
+                    "Dapat dibagi-bagi (Divisibility)."
+                ],
+                correct: 0,
+                explanation: "Kenaikan pasokan kerang secara drastis menyebabkan nilai tukarnya merosot, sehingga gagal memenuhi syarat stabilitas nilai (stability of value)."
+            },
+            {
+                id: 6,
+                type: 'pgk',
+                question: "Manakah yang termasuk ke dalam fungsi turunan (sekunder) uang dalam perekonomian modern? (Pilih semua yang tepat)",
+                options: [
+                    "Sebagai alat pembayaran utang yang sah.",
+                    "Sebagai alat tukar menukar langsung barang.",
+                    "Sebagai alat penimbun/penyimpan kekayaan.",
+                    "Sebagai alat pendorong investasi dan pembentuk modal."
+                ],
+                correct: [0, 2, 3],
+                explanation: "Alat tukar adalah fungsi asli (primer). Sedangkan pembayar utang, penyimpan kekayaan, dan pendorong investasi adalah fungsi turunan (sekunder)."
+            },
+            {
+                id: 7,
+                type: 'bs',
+                question: "Pernyataan HOTS: 'Menurut Teori Kuantitas Uang Irving Fisher, jika kecepatan peredaran uang (V) dan volume transaksi (T) konstan, maka pelipatgandaan jumlah uang beredar (M) akan melipatgandakan tingkat harga (P).'",
+                options: ["BENAR", "SALAH"],
+                correct: 0, // BENAR
+                explanation: "BENAR. Jika V dan T tetap, maka perubahan M akan berbanding lurus secara proporsional dengan perubahan tingkat harga P."
+            },
+            {
+                id: 8,
+                type: 'pg',
+                question: "Perbedaan utama antara Uang Kartal dan Uang Giral terletak pada:",
+                options: [
+                    "Lembaga yang menerbitkan serta bentuk fisik instrumennya.",
+                    "Fungsi utamanya sebagai alat satuan hitung.",
+                    "Tingkat likuiditas di mana uang giral tidak dapat dicairkan.",
+                    "Keberadaannya yang hanya diakui di pasar tradisional."
+                ],
+                correct: 0,
+                explanation: "Uang kartal diterbitkan oleh Bank Sentral berupa fisik kertas/logam, sedangkan uang giral diterbitkan oleh Bank Umum berupa saldo rekening (giro/tabungan)."
+            },
+            {
+                id: 9,
+                type: 'bs',
+                question: "Pernyataan HOTS: 'Sistem barter jauh lebih efisien dibandingkan sistem uang modern karena tidak memerlukan biaya percetakan uang oleh bank sentral.'",
+                options: ["BENAR", "SALAH"],
+                correct: 1, // SALAH
+                explanation: "SALAH. Barter sangat tidak efisien karena memerlukan kesamaan kehendak ganda yang sulit dicapai dan tidak memiliki satuan hitung baku."
+            },
+            {
+                id: 10,
+                type: 'pg',
+                question: "Jika pemerintah mencetak uang baru secara masif untuk menutupi defisit anggaran tanpa diimbangi peningkatan produksi barang riil, dampak langsung terhadap nilai uang tersebut adalah:",
+                options: [
+                    "Penurunan daya beli uang akibat inflasi karena jumlah uang beredar melampaui kebutuhan transaksi.",
+                    "Peningkatan nilai tukar rupiah secara drastis terhadap dolar.",
+                    "Pemberlakuan kembali sistem barter di seluruh perusahaan besar.",
+                    "Kestabilan harga barang dan jasa di pasar."
+                ],
+                correct: 0,
+                explanation: "Pencetakan uang tanpa sokongan peningkatan produksi barang riil akan memicu lonjakan jumlah uang beredar yang menggerus daya beli uang (inflasi)."
+            }
+        ];
+
+        // QUIZ ENGINE LOGIC
+        let currentQuestionIdx = 0;
+        let userAnswers = {};
+
+        function renderQuestion() {
+            const q = quizData[currentQuestionIdx];
+            const container = document.getElementById('quiz-container');
+
+            document.getElementById('quiz-question-number').innerText = `Soal ${currentQuestionIdx + 1} dari ${quizData.length}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((currentQuestionIdx + 1) / quizData.length) * 100}%`;
+
+            let badgeType = '';
+            if (q.type === 'pg') badgeType = 'Pilihan Ganda';
+            else if (q.type === 'bs') badgeType = 'Benar / Salah';
+            else if (q.type === 'pgk') badgeType = 'Pilihan Ganda Kompleks';
+            else if (q.type === 'drag') badgeType = 'Urutkan Langkah';
+
+            let html = `
+                <div class="mb-4">
+                    <span class="text-[10px] font-black bg-naker-100 text-naker-800 px-3 py-1 rounded-md border border-naker-200 uppercase tracking-wider">${badgeType}</span>
+                    <h3 class="text-sm sm:text-base font-bold text-slate-900 mt-2.5 leading-relaxed">${q.question}</h3>
+                </div>
+            `;
+
+            if (q.type === 'pg' || q.type === 'bs') {
+                html += `<div class="space-y-2 mb-4">`;
+                q.options.forEach((opt, idx) => {
+                    const isSelected = userAnswers[q.id] === idx;
+                    const selectedClass = isSelected ? 'border-naker-500 bg-naker-50 font-bold ring-2 ring-naker-300' : 'border-slate-200 hover:border-naker-300 bg-white';
+                    html += `
+                        <button onclick="selectSingleAnswer(${q.id}, ${idx})" class="w-full text-left p-3.5 rounded-xl border transition-all text-xs sm:text-sm flex items-center justify-between ${selectedClass}">
+                            <span>${opt}</span>
+                            <span class="w-5 h-5 rounded-full border flex items-center justify-center text-xs ${isSelected ? 'border-naker-600 bg-naker-600 text-white' : 'border-slate-300'}">${isSelected ? '✓' : ''}</span>
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'pgk') {
+                const currentSelections = userAnswers[q.id] || [];
+                html += `<div class="space-y-2 mb-4">`;
+                q.options.forEach((opt, idx) => {
+                    const isChecked = currentSelections.includes(idx);
+                    const selectedClass = isChecked ? 'border-naker-500 bg-naker-50 font-bold ring-2 ring-naker-300' : 'border-slate-200 hover:border-naker-300 bg-white';
+                    html += `
+                        <button onclick="toggleMultipleAnswer(${q.id}, ${idx})" class="w-full text-left p-3.5 rounded-xl border transition-all text-xs sm:text-sm flex items-center justify-between ${selectedClass}">
+                            <span>${opt}</span>
+                            <span class="w-5 h-5 rounded border flex items-center justify-center text-xs ${isChecked ? 'border-naker-600 bg-naker-600 text-white' : 'border-slate-300'}">${isChecked ? '✓' : ''}</span>
+                        </button>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'drag') {
+                const currentOrder = userAnswers[q.id] || q.items.map((_, i) => i);
+                html += `<p class="text-xs text-slate-500 mb-2">Gunakan tombol panah untuk menyusun urutan langkah secara logis:</p>`;
+                html += `<div id="drag-q-container" class="space-y-2 mb-4">`;
+                currentOrder.forEach((itemIdx) => {
+                    html += `
+                        <div class="drag-q-item bg-naker-50/50 p-3 rounded-xl border border-naker-200 flex items-center justify-between text-xs sm:text-sm" data-idx="${itemIdx}">
+                            <span class="font-medium text-slate-800">${q.items[itemIdx]}</span>
+                            <div class="flex gap-1">
+                                <button onclick="moveQuizOrder(${q.id}, ${itemIdx}, -1)" class="px-2.5 py-1 bg-naker-200 hover:bg-naker-300 rounded-lg font-bold text-naker-900">▲</button>
+                                <button onclick="moveQuizOrder(${q.id}, ${itemIdx}, 1)" class="px-2.5 py-1 bg-naker-200 hover:bg-naker-300 rounded-lg font-bold text-naker-900">▼</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            if (userAnswers[q.id] !== undefined) {
+                const isCorrect = checkAnswerCorrectness(q);
+                const feedbackBg = isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-900' : 'bg-rose-50 border-rose-300 text-rose-900';
+                html += `
+                    <div class="p-4 rounded-xl border ${feedbackBg} text-xs sm:text-sm leading-relaxed transition-all">
+                        <div class="font-bold mb-1 flex items-center gap-1.5">
+                            ${isCorrect ? '✅ Umpan Balik: JAWABAN TEPAT!' : '❌ Umpan Balik: KURANG TEPAT'}
+                        </div>
+                        <p class="mt-1"><strong>Penjelasan Konseptual:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+
+            document.getElementById('btn-prev-q').disabled = currentQuestionIdx === 0;
+            document.getElementById('btn-next-q').innerText = currentQuestionIdx === quizData.length - 1 ? 'Selesai & Lihat Dashboard 🎉' : 'Soal Berikutnya →';
+
+            updateScoreHeader();
+        }
+
+        function selectSingleAnswer(qId, optionIdx) {
+            userAnswers[qId] = optionIdx;
+            const q = quizData.find(item => item.id === qId);
+            if (optionIdx === q.correct) {
+                setMascotState('happy', 'Luar biasa! Pemahaman konsep uangmu sangat tepat.');
+            } else {
+                setMascotState('sad', 'Jawaban kurang tepat. Cermati penjelasan konseptualnya.');
+            }
+            renderQuestion();
+        }
+
+        function toggleMultipleAnswer(qId, optionIdx) {
+            let current = userAnswers[qId] || [];
+            if (current.includes(optionIdx)) {
+                current = current.filter(i => i !== optionIdx);
+            } else {
+                current.push(optionIdx);
+            }
+            userAnswers[qId] = current;
+            renderQuestion();
+        }
+
+        function moveQuizOrder(qId, itemIdx, direction) {
+            const q = quizData.find(item => item.id === qId);
+            let currentOrder = userAnswers[qId] || q.items.map((_, i) => i);
+            const pos = currentOrder.indexOf(itemIdx);
+            if (direction === -1 && pos > 0) {
+                const temp = currentOrder[pos];
+                currentOrder[pos] = currentOrder[pos - 1];
+                currentOrder[pos - 1] = temp;
+            } else if (direction === 1 && pos < currentOrder.length - 1) {
+                const temp = currentOrder[pos];
+                currentOrder[pos] = currentOrder[pos + 1];
+                currentOrder[pos + 1] = temp;
+            }
+            userAnswers[qId] = currentOrder;
+            renderQuestion();
+        }
+
+        function checkAnswerCorrectness(q) {
+            const userAns = userAnswers[q.id];
+            if (userAns === undefined) return false;
+
+            if (q.type === 'pg' || q.type === 'bs') {
+                return userAns === q.correct;
+            } else if (q.type === 'pgk') {
+                if (!Array.isArray(userAns)) return false;
+                const sortedUser = [...userAns].sort().join(',');
+                const sortedCorrect = [...q.correct].sort().join(',');
+                return sortedUser === sortedCorrect;
+            } else if (q.type === 'drag') {
+                return JSON.stringify(userAns) === JSON.stringify(q.correctOrder);
+            }
+            return false;
+        }
+
+        function updateScoreHeader() {
+            let total = 0;
+            quizData.forEach(q => {
+                if (checkAnswerCorrectness(q)) total += 10;
+            });
+            document.getElementById('current-score-display').innerText = total;
+            return total;
+        }
+
+        function navigateQuiz(dir) {
+            if (dir === 1 && currentQuestionIdx < quizData.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else if (dir === -1 && currentQuestionIdx > 0) {
+                currentQuestionIdx--;
+                renderQuestion();
+            } else if (dir === 1 && currentQuestionIdx === quizData.length - 1) {
+                switchTab('tahap4');
+            }
+        }
+
+        function calculateFinalDashboard() {
+            let score = 0;
+            let correct = 0;
+            let wrong = 0;
+
+            let typeCounts = {
+                pg: { correct: 0, total: 4 },
+                pgk: { correct: 0, total: 2 },
+                bs: { correct: 0, total: 3 },
+                drag: { correct: 0, total: 1 }
+            };
+
+            quizData.forEach(q => {
+                const isCorrect = checkAnswerCorrectness(q);
+                if (isCorrect) {
+                    score += 10;
+                    correct++;
+                    if (typeCounts[q.type]) typeCounts[q.type].correct++;
+                } else {
+                    wrong++;
+                }
+            });
+
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('correct-count').innerText = `${correct} Soal`;
+            document.getElementById('wrong-count').innerText = `${wrong} Soal`;
+
+            document.getElementById('type-pg').innerText = `${typeCounts.pg.correct} / ${typeCounts.pg.total}`;
+            document.getElementById('type-pgk').innerText = `${typeCounts.pgk.correct} / ${typeCounts.pgk.total}`;
+            document.getElementById('type-bs').innerText = `${typeCounts.bs.correct} / ${typeCounts.bs.total}`;
+            document.getElementById('type-drag').innerText = `${typeCounts.drag.correct} / ${typeCounts.drag.total}`;
+
+            const reflectiveBox = document.getElementById('reflective-box');
+            reflectiveBox.className = "p-5 rounded-2xl text-xs sm:text-sm text-left leading-relaxed mb-6 border shadow-sm ";
+
+            if (score >= 80) {
+                reflectiveBox.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-900');
+                reflectiveBox.innerHTML = `
+                    <h4 class="font-bold text-base mb-1">🌟 Pakar Teori & Konsep Uang!</h4>
+                    <p>Selamat! Anda telah menguasai materi Konsep, Fungsi, Jenis Uang, dan Teori Kuantitas Uang Irving Fisher dengan sangat luar biasa.</p>
+                `;
+                setMascotState('happy', 'Skor kamu luar biasa! Kamu siap menjadi ekonom muda yang handal!');
+                triggerConfetti();
+                playSound('finish');
+            } else if (score >= 60) {
+                reflectiveBox.classList.add('bg-naker-50', 'border-naker-300', 'text-naker-900');
+                reflectiveBox.innerHTML = `
+                    <h4 class="font-bold text-base mb-1">👍 Pemahaman Baik</h4>
+                    <p>Capaian Anda sudah baik dalam memahami konsep uang. Disarankan untuk memperdalam lagi rumus Teori Kuantitas Uang Fisher dan perbedaan uang kartal serta giral.</p>
+                `;
+                setMascotState('happy', 'Hasil yang bagus! Mari pertajam pemahaman materimu.');
+            } else {
+                reflectiveBox.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-900');
+                reflectiveBox.innerHTML = `
+                    <h4 class="font-bold text-base mb-1">📚 Perlu Penguatan Materi</h4>
+                    <p>Jangan berkecil hati! Pelajari kembali penjelasan materi di Tahap 2 tentang Fungsi dan Teori Uang, lalu ulangi evaluasi ini.</p>
+                `;
+                setMascotState('thinking', 'Yuk pelajari kembali materi Tahap 2 agar pemahamanmu makin mantap!');
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestionIdx = 0;
+            userAnswers = {};
+            switchTab('tahap1');
+            setMascotState('happy', 'Mari kita mulai eksplorasi materi Konsep dan Teori Uang kembali!');
+        }
+
+        // CONFETTI ANIMATION ENGINE
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#38bdf8', '#0284c7', '#0369a1', '#10b981', '#f59e0b'];
+
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    rotation: Math.random() * 360
+                });
+            }
+
+            let animationFrame;
+            let timer = 0;
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    p.rotation += 2.5;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate((p.rotation * Math.PI) / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+                });
+
+                timer++;
+                if (timer < 200) {
+                    animationFrame = requestAnimationFrame(render);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+
+            render();
+        }
+
+        // ON LOAD INITIALIZATION
+        window.onload = function() {
+            renderQuestion();
+        };
+    </script>
+</body>
+</html>
